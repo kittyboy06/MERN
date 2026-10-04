@@ -1,8 +1,3 @@
-// ===============================================================
-// Mongoose Model: Event
-// Defines the schema structure and validations for campus events
-// ===============================================================
-
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema(

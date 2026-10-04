@@ -1,8 +1,3 @@
-// ===============================================================
-// Mongoose Model: Assignment
-// Defines the schema structure and validations for course assignments
-// ===============================================================
-
 const mongoose = require("mongoose");
 
 const assignmentSchema = new mongoose.Schema(

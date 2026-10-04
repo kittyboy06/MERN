@@ -1,12 +1,5 @@
-// ===============================================================
-// Mongoose Model: Student
-// Defines the schema structure and validations for student records
-// in the MongoDB database.
-// ===============================================================
-
 const mongoose = require("mongoose");
 
-// mongoose.Schema defines the shape of the documents inside the collection
 const studentSchema = new mongoose.Schema(
   {
     name: {
@@ -27,12 +20,10 @@ const studentSchema = new mongoose.Schema(
     }
   },
   {
-    // timestamps automatically adds createdAt and updatedAt fields
     timestamps: true
   }
 );
 
-// mongoose.model compiles the schema into an active model interface
 const Student = mongoose.model("Student", studentSchema);
 
 module.exports = Student;

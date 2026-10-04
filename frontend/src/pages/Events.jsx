@@ -1,12 +1,3 @@
-// ===============================================================
-// Page: Events.jsx
-// Demonstrates:
-// 1. Full CRUD for campus events (seminars, workshops, meets)
-// 2. Multi-line textareas and Date pickers in controlled forms
-// 3. Venue-based filtering via query parameters
-// 4. Clean top-form edit interaction
-// ===============================================================
-
 import React, { useState, useEffect } from "react";
 import EventCard from "../components/EventCard.jsx";
 
@@ -27,9 +18,6 @@ function Events() {
   const [form, setForm] = useState(initialForm);
   const [editingId, setEditingId] = useState(null);
 
-  // ===============================================================
-  // READ: GET /api/events (with optional venue query)
-  // ===============================================================
   async function fetchEvents() {
     setLoading(true);
     setError(null);
@@ -59,9 +47,6 @@ function Events() {
     fetchEvents();
   }, [venueFilter]);
 
-  // ===============================================================
-  // FORM HANDLER
-  // ===============================================================
   function handleInputChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -70,9 +55,6 @@ function Events() {
     }));
   }
 
-  // ===============================================================
-  // CREATE (POST) & UPDATE (PUT)
-  // ===============================================================
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
@@ -106,9 +88,6 @@ function Events() {
     }
   }
 
-  // ===============================================================
-  // EDIT TRIGGER
-  // ===============================================================
   function handleStartEdit(event) {
     setEditingId(event._id);
 
@@ -131,9 +110,6 @@ function Events() {
     setForm(initialForm);
   }
 
-  // ===============================================================
-  // DELETE
-  // ===============================================================
   async function handleDelete(id) {
     const confirmed = window.confirm("Are you sure you want to delete this event?");
     if (!confirmed) return;
@@ -163,12 +139,11 @@ function Events() {
     <div className="container">
       <header className="page-header">
         <h1>📅 Campus Events</h1>
-        <p>Demonstrates event scheduling, text areas, and venue queries.</p>
+        <p>Organize campus seminars, workshops, and venue schedules.</p>
       </header>
 
       {error && <div className="error-banner">⚠️ {error}</div>}
 
-      {/* Controlled Form Card */}
       <section className="card">
         <h2>{editingId ? "✏️ Edit Event" : "➕ Schedule New Event"}</h2>
 
@@ -241,7 +216,6 @@ function Events() {
         </form>
       </section>
 
-      {/* Venue Filter Card */}
       <section className="card">
         <h2>🔍 Filter by Venue</h2>
         <div className="filter-bar">
@@ -263,7 +237,6 @@ function Events() {
         </div>
       </section>
 
-      {/* Events List Card */}
       <section className="card">
         <div className="section-heading">
           <h2>

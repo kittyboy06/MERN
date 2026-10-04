@@ -1,22 +1,12 @@
-// ===============================================================
-// Note Routes: /api/notes
-// Demonstrates REST API CRUD operations for student notes.
-// ===============================================================
-
 const express = require("express");
 const mongoose = require("mongoose");
 const Note = require("../models/Note");
 
 const router = express.Router();
 
-// ===============================================================
-// GET /api/notes
-// Query parameters: /api/notes?search=exam
-// ===============================================================
 router.get("/", async (req, res) => {
   try {
     const { search } = req.query;
-
     const filter = {};
 
     if (search && search.trim() !== "") {
@@ -25,7 +15,6 @@ router.get("/", async (req, res) => {
     }
 
     const notes = await Note.find(filter).sort({ createdAt: -1 });
-
     res.json(notes);
   } catch (error) {
     res.status(500).json({
@@ -35,9 +24,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ===============================================================
-// GET /api/notes/:id
-// ===============================================================
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -65,9 +51,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// ===============================================================
-// POST /api/notes
-// ===============================================================
 router.post("/", async (req, res) => {
   try {
     const { title, content } = req.body;
@@ -95,9 +78,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ===============================================================
-// PUT /api/notes/:id
-// ===============================================================
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -135,9 +115,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// ===============================================================
-// DELETE /api/notes/:id
-// ===============================================================
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;

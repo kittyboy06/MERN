@@ -1,11 +1,3 @@
-// ===============================================================
-// Component: StudentCard
-// Demonstrates:
-// 1. Reusable React component receiving data via props.
-// 2. Prop immutability: Props are read-only and never modified here.
-// 3. Callback props (onEdit, onDelete) to notify parent component of actions.
-// ===============================================================
-
 import React from "react";
 
 function StudentCard({ student, onEdit, onDelete }) {
@@ -19,7 +11,6 @@ function StudentCard({ student, onEdit, onDelete }) {
       </div>
 
       <div className="card-actions">
-        {/* Trigger edit callback in parent component with student object */}
         <button
           type="button"
           className="btn-edit"
@@ -28,7 +19,6 @@ function StudentCard({ student, onEdit, onDelete }) {
           ✏️ Edit
         </button>
 
-        {/* Trigger delete callback in parent component with student ID */}
         <button
           type="button"
           className="btn-danger"

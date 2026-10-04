@@ -1,12 +1,3 @@
-// ===============================================================
-// Page: Assignments.jsx
-// Demonstrates:
-// 1. Full CRUD for course assignments with Mongoose Date & Enum fields
-// 2. Controlled inputs including <input type="date"> and <select>
-// 3. Status filtering via query parameters
-// 4. Top-form edit flow with Cancel capability
-// ===============================================================
-
 import React, { useState, useEffect } from "react";
 import AssignmentCard from "../components/AssignmentCard.jsx";
 
@@ -27,9 +18,6 @@ function Assignments() {
   const [form, setForm] = useState(initialForm);
   const [editingId, setEditingId] = useState(null);
 
-  // ===============================================================
-  // READ: GET /api/assignments (with optional status query)
-  // ===============================================================
   async function fetchAssignments() {
     setLoading(true);
     setError(null);
@@ -59,9 +47,6 @@ function Assignments() {
     fetchAssignments();
   }, [statusFilter]);
 
-  // ===============================================================
-  // FORM HANDLER: Synchronizes input changes with form state
-  // ===============================================================
   function handleInputChange(event) {
     const { name, value } = event.target;
     setForm((prev) => ({
@@ -70,9 +55,6 @@ function Assignments() {
     }));
   }
 
-  // ===============================================================
-  // CREATE (POST) & UPDATE (PUT)
-  // ===============================================================
   async function handleSubmit(event) {
     event.preventDefault();
     setError(null);
@@ -106,13 +88,9 @@ function Assignments() {
     }
   }
 
-  // ===============================================================
-  // EDIT TRIGGER
-  // ===============================================================
   function handleStartEdit(assignment) {
     setEditingId(assignment._id);
 
-    // Format ISO date string into YYYY-MM-DD for HTML5 date input
     const dateFormatted = assignment.dueDate
       ? new Date(assignment.dueDate).toISOString().split("T")[0]
       : "";
@@ -132,9 +110,6 @@ function Assignments() {
     setForm(initialForm);
   }
 
-  // ===============================================================
-  // DELETE
-  // ===============================================================
   async function handleDelete(id) {
     const confirmed = window.confirm(
       "Are you sure you want to delete this assignment?"
@@ -166,12 +141,11 @@ function Assignments() {
     <div className="container">
       <header className="page-header">
         <h1>📚 Assignment Tracker</h1>
-        <p>Demonstrates Date schemas, select dropdowns, and status-based updates.</p>
+        <p>Track coursework deadlines, subjects, and completion statuses.</p>
       </header>
 
       {error && <div className="error-banner">⚠️ {error}</div>}
 
-      {/* Controlled Form Card */}
       <section className="card">
         <h2>{editingId ? "✏️ Edit Assignment" : "➕ Add New Assignment"}</h2>
 
@@ -245,7 +219,6 @@ function Assignments() {
         </form>
       </section>
 
-      {/* Status Filter Card */}
       <section className="card">
         <h2>🔍 Filter by Status</h2>
         <div className="filter-bar">
@@ -269,7 +242,6 @@ function Assignments() {
         </div>
       </section>
 
-      {/* Assignment List Card */}
       <section className="card">
         <div className="section-heading">
           <h2>

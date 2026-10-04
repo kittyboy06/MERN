@@ -1,9 +1,3 @@
-// ===============================================================
-// Component: EventCard
-// Demonstrates: Props passing, display of multi-field resources
-// and action callbacks.
-// ===============================================================
-
 import React from "react";
 
 function EventCard({ event, onEdit, onDelete }) {

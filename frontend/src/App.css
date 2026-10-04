@@ -1,9 +1,3 @@
-/* ===============================================================
-   CampusHub - Application Styles (App.css)
-   Clean, vanilla CSS designed for learning purposes.
-   No external frameworks (Tailwind, Bootstrap) needed.
-   =============================================================== */
-
 * {
   box-sizing: border-box;
 }
@@ -16,7 +10,6 @@ body {
   line-height: 1.5;
 }
 
-/* ================= NAVIGATION BAR ================= */
 .navbar {
   background-color: #1e293b;
   color: #fff;
@@ -78,7 +71,6 @@ body {
   background-color: #0284c7;
 }
 
-/* ================= MAIN CONTAINER ================= */
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -101,7 +93,6 @@ body {
   font-size: 1rem;
 }
 
-/* ================= CARDS & CONTAINERS ================= */
 .card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -118,7 +109,6 @@ body {
   color: #1e293b;
 }
 
-/* ================= FORMS & INPUTS ================= */
 form {
   display: grid;
   gap: 14px;
@@ -169,7 +159,6 @@ textarea {
   margin-top: 6px;
 }
 
-/* ================= BUTTONS ================= */
 button {
   padding: 10px 18px;
   border: none;
@@ -223,7 +212,6 @@ button {
   color: #7f1d1d;
 }
 
-/* ================= SEARCH & FILTER ================= */
 .filter-bar {
   display: flex;
   gap: 10px;
@@ -235,7 +223,6 @@ button {
   flex: 1;
 }
 
-/* ================= LIST HEADINGS & STATES ================= */
 .section-heading {
   display: flex;
   align-items: center;
@@ -277,7 +264,6 @@ button {
   font-size: 0.95rem;
 }
 
-/* ================= ITEM GRIDS & CARDS ================= */
 .items-grid {
   display: grid;
   gap: 14px;
@@ -343,7 +329,6 @@ button {
   align-items: center;
 }
 
-/* ================= BADGES ================= */
 .badge {
   display: inline-block;
   padding: 3px 8px;
@@ -364,7 +349,6 @@ button {
   color: #166534;
 }
 
-/* ================= DASHBOARD HOME ================= */
 .dashboard-hero {
   background: linear-gradient(135deg, #0284c7, #0369a1);
   color: white;
@@ -459,7 +443,6 @@ button {
   font-weight: 500;
 }
 
-/* ================= RESPONSIVE DESIGN ================= */
 @media (max-width: 680px) {
   .nav-container {
     flex-direction: column;

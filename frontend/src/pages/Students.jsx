@@ -1,43 +1,23 @@
-// ===============================================================
-// Page: Students.jsx
-// Demonstrates:
-// 1. Full CRUD integration with Express /api/students
-// 2. React state hooks (useState) for items, forms, filter, & edit mode
-// 3. Effect hook (useEffect) for data fetching on mount & filter change
-// 4. Controlled form handling with input onChange events
-// 5. Conditional rendering for loading, error, empty, and edit states
-// 6. Array .map() with stable MongoDB _id as the React key
-// ===============================================================
-
 import React, { useState, useEffect } from "react";
 import StudentCard from "../components/StudentCard.jsx";
 
 const API_URL = "http://localhost:5000/api/students";
 
 function Students() {
-  // Application state
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [departmentFilter, setDepartmentFilter] = useState("");
 
-  // Controlled form state
   const initialForm = { name: "", department: "", year: 1 };
   const [form, setForm] = useState(initialForm);
-
-  // Tracks if the user is currently editing an existing record
-  // null = Add mode; contains MongoDB _id when in Edit mode
   const [editingId, setEditingId] = useState(null);
 
-  // ===============================================================
-  // READ: GET /api/students (with optional department query param)
-  // ===============================================================
   async function fetchStudents() {
     setLoading(true);
     setError(null);
 
     try {
-      // Build query string if filter is provided
       const query = departmentFilter.trim()
         ? `?department=${encodeURIComponent(departmentFilter.trim())}`
         : "";
@@ -58,14 +38,10 @@ function Students() {
     }
   }
 
-  // useEffect runs after render; re-runs whenever departmentFilter changes
   useEffect(() => {
     fetchStudents();
   }, [departmentFilter]);
 
-  // ===============================================================
-  // FORM INPUT HANDLER: Updates state on each keystroke
-  // ===============================================================
   function handleInputChange(event) {
     const { name, value } = event.target;
     setForm((prev) => ({
@@ -74,11 +50,7 @@ function Students() {
     }));
   }
 
-  // ===============================================================
-  // CREATE (POST) & UPDATE (PUT) HANDLER
-  // ===============================================================
   async function handleSubmit(event) {
-    // event.preventDefault() stops full browser page reload on form submit
     event.preventDefault();
     setError(null);
 
@@ -105,20 +77,14 @@ function Students() {
         throw new Error(data.message || `Failed to ${isEditing ? "update" : "add"} student`);
       }
 
-      // Reset form and exit edit mode
       setForm(initialForm);
       setEditingId(null);
-
-      // Re-fetch list to reflect updated data
       fetchStudents();
     } catch (err) {
       setError(err.message);
     }
   }
 
-  // ===============================================================
-  // EDIT TRIGGER: Populates the form with existing student values
-  // ===============================================================
   function handleStartEdit(student) {
     setEditingId(student._id);
     setForm({
@@ -126,7 +92,6 @@ function Students() {
       department: student.department,
       year: student.year
     });
-    // Scroll window smoothly to form
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -135,9 +100,6 @@ function Students() {
     setForm(initialForm);
   }
 
-  // ===============================================================
-  // DELETE: Removes student by ID
-  // ===============================================================
   async function handleDelete(id) {
     const confirmed = window.confirm("Are you sure you want to delete this student?");
     if (!confirmed) return;
@@ -153,7 +115,6 @@ function Students() {
         throw new Error(data.message || "Failed to delete student");
       }
 
-      // If user was currently editing the deleted student, cancel edit mode
       if (editingId === id) {
         handleCancelEdit();
       }
@@ -168,13 +129,11 @@ function Students() {
     <div className="container">
       <header className="page-header">
         <h1>👥 Student Management</h1>
-        <p>Demonstrates full CRUD with Mongoose, route parameters, and query filtering.</p>
+        <p>Manage student records, departments, and academic years.</p>
       </header>
 
-      {/* Error state alert banner */}
       {error && <div className="error-banner">⚠️ {error}</div>}
 
-      {/* Controlled Form Card */}
       <section className="card">
         <h2>{editingId ? "✏️ Edit Student" : "➕ Add New Student"}</h2>
 
@@ -224,7 +183,6 @@ function Students() {
               {editingId ? "Update Student" : "Add Student"}
             </button>
 
-            {/* Cancel button only displays when in Edit mode */}
             {editingId && (
               <button
                 type="button"
@@ -238,7 +196,6 @@ function Students() {
         </form>
       </section>
 
-      {/* Search / Filter Card */}
       <section className="card">
         <h2>🔍 Filter by Department</h2>
         <div className="filter-bar">
@@ -260,7 +217,6 @@ function Students() {
         </div>
       </section>
 
-      {/* Students List Card */}
       <section className="card">
         <div className="section-heading">
           <h2>
@@ -276,7 +232,6 @@ function Students() {
           </button>
         </div>
 
-        {/* Conditional rendering for API states */}
         {loading ? (
           <p className="loading-text">Loading student records...</p>
         ) : students.length === 0 ? (

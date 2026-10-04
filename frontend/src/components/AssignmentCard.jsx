@@ -1,14 +1,6 @@
-// ===============================================================
-// Component: AssignmentCard
-// Demonstrates:
-// 1. Props usage and rendering formatted dates.
-// 2. Conditional rendering for status badges (Pending vs Completed).
-// ===============================================================
-
 import React from "react";
 
 function AssignmentCard({ assignment, onEdit, onDelete }) {
-  // Format Date object cleanly for display
   const formattedDate = assignment.dueDate
     ? new Date(assignment.dueDate).toLocaleDateString(undefined, {
         year: "numeric",
@@ -27,7 +19,6 @@ function AssignmentCard({ assignment, onEdit, onDelete }) {
 
         <div className="item-meta">
           <span>📅 Due: {formattedDate}</span>
-          {/* Conditional rendering for status styling */}
           <span
             className={`badge ${
               isCompleted ? "badge-completed" : "badge-pending"

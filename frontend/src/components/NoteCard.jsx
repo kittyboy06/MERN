@@ -1,9 +1,3 @@
-// ===============================================================
-// Component: NoteCard
-// Demonstrates: Rendering notes with title, text content,
-// creation timestamps, and edit/delete callbacks.
-// ===============================================================
-
 import React from "react";
 
 function NoteCard({ note, onEdit, onDelete }) {

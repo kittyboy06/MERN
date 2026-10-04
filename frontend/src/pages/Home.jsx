@@ -1,22 +1,14 @@
-// ===============================================================
-// Page: Home.jsx
-// Overview dashboard introducing CampusHub and displaying
-// navigation cards to each resource module.
-// ===============================================================
-
 import React from "react";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div className="container">
-      {/* Welcome Hero Banner */}
       <section className="dashboard-hero">
         <h1>Welcome to CampusHub 🎓</h1>
         <p>A simple, clean Student Campus Management System built with the MERN Stack.</p>
       </section>
 
-      {/* Module Overview Cards */}
       <section className="dashboard-grid">
         <Link to="/students" className="dash-card">
           <h3>👥 Students</h3>
@@ -43,7 +35,6 @@ function Home() {
         </Link>
       </section>
 
-      {/* Educational Concept Box */}
       <section className="concepts-box">
         <h2>💡 Core MERN Concepts Demonstrated</h2>
         <p>

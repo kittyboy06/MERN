@@ -1,8 +1,3 @@
-// ===============================================================
-// Mongoose Model: Note
-// Defines the schema structure and validations for student notes
-// ===============================================================
-
 const mongoose = require("mongoose");
 
 const noteSchema = new mongoose.Schema(

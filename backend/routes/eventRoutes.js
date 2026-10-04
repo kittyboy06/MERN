@@ -1,22 +1,12 @@
-// ===============================================================
-// Event Routes: /api/events
-// Demonstrates REST API CRUD operations for campus events.
-// ===============================================================
-
 const express = require("express");
 const mongoose = require("mongoose");
 const Event = require("../models/Event");
 
 const router = express.Router();
 
-// ===============================================================
-// GET /api/events
-// Query parameters: /api/events?venue=Auditorium
-// ===============================================================
 router.get("/", async (req, res) => {
   try {
     const { venue } = req.query;
-
     const filter = {};
 
     if (venue && venue.trim() !== "") {
@@ -24,7 +14,6 @@ router.get("/", async (req, res) => {
     }
 
     const events = await Event.find(filter).sort({ date: 1 });
-
     res.json(events);
   } catch (error) {
     res.status(500).json({
@@ -34,9 +23,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ===============================================================
-// GET /api/events/:id
-// ===============================================================
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -64,9 +50,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// ===============================================================
-// POST /api/events
-// ===============================================================
 router.post("/", async (req, res) => {
   try {
     const { title, description, date, venue } = req.body;
@@ -96,9 +79,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ===============================================================
-// PUT /api/events/:id
-// ===============================================================
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -141,9 +121,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// ===============================================================
-// DELETE /api/events/:id
-// ===============================================================
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;

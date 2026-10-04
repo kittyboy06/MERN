@@ -1,22 +1,12 @@
-// ===============================================================
-// Assignment Routes: /api/assignments
-// Demonstrates REST API CRUD operations for coursework assignments.
-// ===============================================================
-
 const express = require("express");
 const mongoose = require("mongoose");
 const Assignment = require("../models/Assignment");
 
 const router = express.Router();
 
-// ===============================================================
-// GET /api/assignments
-// Query parameters: /api/assignments?status=Pending&subject=Math
-// ===============================================================
 router.get("/", async (req, res) => {
   try {
     const { status, subject } = req.query;
-
     const filter = {};
 
     if (status && status.trim() !== "") {
@@ -28,7 +18,6 @@ router.get("/", async (req, res) => {
     }
 
     const assignments = await Assignment.find(filter).sort({ dueDate: 1 });
-
     res.json(assignments);
   } catch (error) {
     res.status(500).json({
@@ -38,9 +27,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ===============================================================
-// GET /api/assignments/:id
-// ===============================================================
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -68,9 +54,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// ===============================================================
-// POST /api/assignments
-// ===============================================================
 router.post("/", async (req, res) => {
   try {
     const { title, subject, dueDate, status } = req.body;
@@ -100,9 +83,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ===============================================================
-// PUT /api/assignments/:id
-// ===============================================================
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -145,9 +125,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// ===============================================================
-// DELETE /api/assignments/:id
-// ===============================================================
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;

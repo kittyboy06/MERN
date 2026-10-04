@@ -1,11 +1,3 @@
-// ===============================================================
-// Page: Notes.jsx
-// Demonstrates:
-// 1. Full CRUD for student notes and study materials
-// 2. Multi-line content input and search filtering across text
-// 3. Simple, readable state management and top-form editing
-// ===============================================================
-
 import React, { useState, useEffect } from "react";
 import NoteCard from "../components/NoteCard.jsx";
 
@@ -21,9 +13,6 @@ function Notes() {
   const [form, setForm] = useState(initialForm);
   const [editingId, setEditingId] = useState(null);
 
-  // ===============================================================
-  // READ: GET /api/notes (with optional search query)
-  // ===============================================================
   async function fetchNotes() {
     setLoading(true);
     setError(null);
@@ -53,9 +42,6 @@ function Notes() {
     fetchNotes();
   }, [searchFilter]);
 
-  // ===============================================================
-  // FORM HANDLER
-  // ===============================================================
   function handleInputChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -64,9 +50,6 @@ function Notes() {
     }));
   }
 
-  // ===============================================================
-  // CREATE (POST) & UPDATE (PUT)
-  // ===============================================================
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
@@ -100,9 +83,6 @@ function Notes() {
     }
   }
 
-  // ===============================================================
-  // EDIT TRIGGER
-  // ===============================================================
   function handleStartEdit(note) {
     setEditingId(note._id);
     setForm({
@@ -117,9 +97,6 @@ function Notes() {
     setForm(initialForm);
   }
 
-  // ===============================================================
-  // DELETE
-  // ===============================================================
   async function handleDelete(id) {
     const confirmed = window.confirm("Are you sure you want to delete this note?");
     if (!confirmed) return;
@@ -149,12 +126,11 @@ function Notes() {
     <div className="container">
       <header className="page-header">
         <h1>📝 Study Notes & Reminders</h1>
-        <p>Demonstrates text storage, multi-field search, and instant editing.</p>
+        <p>Save notes, study points, and quick reminders.</p>
       </header>
 
       {error && <div className="error-banner">⚠️ {error}</div>}
 
-      {/* Controlled Form Card */}
       <section className="card">
         <h2>{editingId ? "✏️ Edit Note" : "➕ Write New Note"}</h2>
 
@@ -202,7 +178,6 @@ function Notes() {
         </form>
       </section>
 
-      {/* Search Filter Card */}
       <section className="card">
         <h2>🔍 Search Notes</h2>
         <div className="filter-bar">
@@ -224,7 +199,6 @@ function Notes() {
         </div>
       </section>
 
-      {/* Notes List Card */}
       <section className="card">
         <div className="section-heading">
           <h2>
